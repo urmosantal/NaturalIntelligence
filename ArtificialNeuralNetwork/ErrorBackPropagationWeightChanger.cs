@@ -20,13 +20,15 @@ namespace NaturalIntelligence.ArtificialNeuralNetwork
 
         public int NumberOfLayers { get; set; }
 
-        protected internal ErrorBackPropagationWeightChanger() { }
-
-        public ErrorBackPropagationWeightChanger(PerceptronSettings settings) : this()
+        protected internal ErrorBackPropagationWeightChanger()
         {
             previousCycleChanges = new Queue<WeightMap>();
             uncommittedChanges = new Queue<WeightMap>();
             LearningConstant = 1;
+        }
+
+        public ErrorBackPropagationWeightChanger(PerceptronSettings settings) : this()
+        {
             NumberOfLayers = settings.HiddenLayers.Count + 2;
         }
 
