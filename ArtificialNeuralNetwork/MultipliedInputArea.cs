@@ -2,6 +2,8 @@
 {
     public class MultipliedInputArea : InputArea
     {
+        public MultipliedInputArea() { }
+
         public virtual void Reset()
         {
             Total = 0;

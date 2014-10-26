@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 
 namespace NaturalIntelligence.ArtificialNeuralNetwork
 {
@@ -6,11 +8,13 @@ namespace NaturalIntelligence.ArtificialNeuralNetwork
     {
         double? Activation { get; set; }
 
-        Func<double, double> ActivationFunction { get; set; }
+        ActivationFunction ActivationFunction { get; set; }
 
         WeightCollection IncomingWeights { get; }
 
         WeightCollection OutgoingWeights { get; }
+
+        void ConnectTo(IEnumerable<Unit> unitsBelow, IEnumerable<Unit> unitsAbove);
 
         void Signal(double value);
 

@@ -29,12 +29,6 @@ namespace NaturalIntelligence.GeneticAlgorithm
             {
                 newPopulation.Add(SelectSingle());
             }
-
-            if(newPopulation.Any(p => p == null))
-            {
-                int x = 0;
-            }
-
             return newPopulation;
         }
 

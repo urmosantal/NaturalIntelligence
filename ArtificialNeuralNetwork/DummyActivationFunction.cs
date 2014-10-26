@@ -1,6 +1,6 @@
 ﻿namespace NaturalIntelligence.ArtificialNeuralNetwork
 {
-    public class DummyActivationFunction
+    public class DummyActivationFunction : ActivationFunction
     {
         public double Activate(double input)
         {

@@ -51,7 +51,7 @@ namespace NaturalIntelligence.ArtificialNeuralNetwork
             {
                 //Apply weight changes
                 var outputSignals = new List<double>();
-                for(int o = 0; o < OutputLayer.Count; o++)
+                for(int o = 0; o < OutputLayer.Count(); o++)
                 {
                     double err = OutputLayer[o].Activation.Value - exemplar.Desired[o];
                     outputSignals.Add(err);
@@ -77,7 +77,7 @@ namespace NaturalIntelligence.ArtificialNeuralNetwork
         /// </summary>
         public virtual IEnumerable<bool> CalculateIfUnitsRespondCorrectly(Exemplar exemplar)
         {
-            for (int i = 0; i < OutputLayer.Count; i++)
+            for (int i = 0; i < OutputLayer.Count(); i++)
             {
                 double activation = OutputLayer[i].Activation.Value;
                 double desired = exemplar.Desired[i];

@@ -1,6 +1,6 @@
 ﻿namespace NaturalIntelligence.ArtificialNeuralNetwork
 {
-    public class ThresholdActivationFunction
+    public class ThresholdActivationFunction : ActivationFunction
     {
         public double Threshold { get; set; }
 

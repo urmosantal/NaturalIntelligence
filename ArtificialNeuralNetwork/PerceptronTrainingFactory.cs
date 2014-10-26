@@ -14,7 +14,8 @@ namespace NaturalIntelligence.ArtificialNeuralNetwork
             return new PerceptronTrainer()
             {
                 Perceptron = perceptron,
-                LearningRule = new ErrorBackPropagation(perceptron)
+                LearningRule = new ErrorBackPropagation(perceptron),
+                WeightStrengthCreator = settings.WeightStrengthCreator
             };
         }
     }

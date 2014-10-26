@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace NaturalIntelligence.ArtificialNeuralNetwork
 {
@@ -16,12 +20,9 @@ namespace NaturalIntelligence.ArtificialNeuralNetwork
 
         public int NumberOfLayers { get; set; }
 
-        protected internal ErrorBackPropagationWeightChanger()
-        {
-        }
+        protected internal ErrorBackPropagationWeightChanger() { }
 
-        public ErrorBackPropagationWeightChanger(PerceptronSettings settings)
-            : this()
+        public ErrorBackPropagationWeightChanger(PerceptronSettings settings) : this()
         {
             previousCycleChanges = new Queue<WeightMap>();
             uncommittedChanges = new Queue<WeightMap>();
@@ -34,9 +35,9 @@ namespace NaturalIntelligence.ArtificialNeuralNetwork
             uncommittedChanges.Enqueue(change);
 
             //If this is the last change of the cycle then push to previous changes queue
-            if (uncommittedChanges.Count + 1 == NumberOfLayers)
+            if(uncommittedChanges.Count + 1 == NumberOfLayers)
             {
-                while (uncommittedChanges.Count > 0)
+                while(uncommittedChanges.Count > 0)
                 {
                     previousCycleChanges.Enqueue(uncommittedChanges.Dequeue());
                 }
@@ -95,7 +96,7 @@ namespace NaturalIntelligence.ArtificialNeuralNetwork
             var inputToHiddenWeightChanges = CalculateInputToOutputWeightChanges(errors, inputActivations);
             if (UseBias)
             {
-                for (int i = 0; i < upperLayer.Count; i++)
+                for (int i = 0; i < upperLayer.Count(); i++)
                 {
                     upperLayer[i].AddInput(errors[i]);
                 }
@@ -103,5 +104,6 @@ namespace NaturalIntelligence.ArtificialNeuralNetwork
             ChangeWeightStrengths(inputToHiddenWeightChanges, upperLayer);
             return inputToHiddenWeightChanges;
         }
+
     }
 }

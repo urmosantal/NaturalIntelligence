@@ -25,15 +25,15 @@ namespace NaturalIntelligence.ArtificialNeuralNetwork
             return Convert.ToInt32(Math.Ceiling(Math.Log(numberOfOutputUnits)));
         }
 
-        public Func<double, double> InputActivationFunction { get; set; }
+        public ActivationFunction InputActivationFunction { get; set; }
 
         public Func<InputArea> InputUnitsInputAreaCreator { get; set; }
 
-        public Func<double, double> HiddenActivationFunction { get; set; }
+        public ActivationFunction HiddenActivationFunction { get; set; }
 
         public Func<InputArea> HiddenUnitsInputAreaCreator { get; set; }
 
-        public Func<double, double> OutputActivationFunction { get; set; }
+        public ActivationFunction OutputActivationFunction { get; set; }
 
         public Func<InputArea> OutputUnitsInputAreaCreator { get; set; }
 

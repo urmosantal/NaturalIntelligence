@@ -1,16 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+
 namespace NaturalIntelligence.ArtificialNeuralNetwork
 {
     public class PerceptronTrainer
     {
-        internal PerceptronTrainer() { }
+        protected internal PerceptronTrainer() { }
 
-        public LearningRule LearningRule { get; set; }
+        public virtual LearningRule LearningRule { get; set; }
 
-        public Perceptron Perceptron { get; set; }
+        public virtual Perceptron Perceptron { get; set; }
 
-        public void Train(IEnumerable<Exemplar> trainingData)
+        public virtual Func<double> WeightStrengthCreator { get; set; }
+
+        public virtual void Train(IEnumerable<Exemplar> trainingData)
         {
+            WeightInitializer.InitializeWeightsRandomly(Perceptron, WeightStrengthCreator);
+
             LearningRule.Train(trainingData);
         }
     }

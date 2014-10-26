@@ -1,5 +1,9 @@
-﻿namespace NaturalIntelligence.ArtificialNeuralNetwork
+﻿using Newtonsoft.Json;
+using System;
+
+namespace NaturalIntelligence.ArtificialNeuralNetwork
 {
+    [Serializable, JsonObject(IsReference = true)]
     public class StandardWeight : Weight, SignalSubscriber
     {
         public StandardWeight(Unit incomingUnit, Unit outgoingUnit)
@@ -12,8 +16,10 @@
 
         public double Strength { get; set; }
 
+        [JsonProperty(IsReference = true)]
         public Unit IncomingUnit { get; protected set; }
 
+        [JsonProperty(IsReference = true)]
         public Unit OutgoingUnit { get; protected set; }
 
         public void Signal(double value)

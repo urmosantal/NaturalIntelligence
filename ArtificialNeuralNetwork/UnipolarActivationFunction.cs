@@ -2,7 +2,7 @@
 
 namespace NaturalIntelligence.ArtificialNeuralNetwork
 {
-    public class UnipolarActivationFunction
+    public class UnipolarActivationFunction : ActivationFunction
     {
         public double Steepness { get; set; }
 
@@ -10,6 +10,8 @@ namespace NaturalIntelligence.ArtificialNeuralNetwork
         {
             Steepness = 1;
         }
+
+        public delegate double x(int x);
 
         public double Activate(double input)
         {

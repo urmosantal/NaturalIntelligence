@@ -15,7 +15,10 @@ namespace NaturalIntelligence.ArtificialNeuralNetwork
 
         public virtual IList<Layer> Layers { get { return layers; } }
 
-        public Func<double> WeightStrengthCreator { get; set; }
+        public virtual IList<double> Activate(params double[] inputs)
+        {
+            return Activate(inputs.ToList());
+        }
 
         public virtual IList<double> Activate(IList<double> inputs)
         {
@@ -29,28 +32,11 @@ namespace NaturalIntelligence.ArtificialNeuralNetwork
             return outputLayer.Select(ol => ol.Activation.Value).ToList();
         }
 
-        public virtual void AddLayer(Layer layer)
+        public Layer Create()
         {
-            layers.Add(layer);
-            if (layers.Count > 1)
-            {
-                int secondFromLastIndex = layers.Count - 2;
-                var secondFromLayerLayer = layers[secondFromLastIndex];
-                ConnectLayers(secondFromLayerLayer, layer);
-            }
-        }
-
-        protected void ConnectLayers(Layer lower, Layer upper)
-        {
-            lower.ForEach(lowerUnit =>
-            {
-                upper.ForEach(upperUnit =>
-                {
-                    var connection = new StandardWeight(lowerUnit, upperUnit);
-                    connection.Strength = WeightStrengthCreator();
-                    lowerUnit.Subscribe(connection);
-                });
-            });
+            var newLayer = new Layer(Layers.Count < 1 ? null : Layers.Last());
+            Layers.Add(newLayer);
+            return newLayer;
         }
     }
 }

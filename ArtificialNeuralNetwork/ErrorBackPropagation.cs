@@ -48,7 +48,7 @@ namespace NaturalIntelligence.ArtificialNeuralNetwork
         public double CalculateCycleError(Exemplar exemplar)
         {
             double sumErr = 0;
-            int numberOfOutputUnits = OutputLayer.Count;
+            int numberOfOutputUnits = OutputLayer.Count();
             for (int i = 0; i < numberOfOutputUnits; i++)
             {
                 sumErr += Math.Pow(exemplar.Desired[i] - OutputLayer[i].Activation.Value, 2);
@@ -62,11 +62,11 @@ namespace NaturalIntelligence.ArtificialNeuralNetwork
         public virtual IList<double> CalculateHiddenLayerErrors(IList<double> outputErrors, Layer layer)
         {
             var hiddenErrors = new List<double>();
-            layer.ForEach(h =>
+            foreach(var hiddenUnit in layer)
             {
-                double hiddenError = CalculateHiddenError(h, outputErrors);
+                double hiddenError = CalculateHiddenError(hiddenUnit, outputErrors);
                 hiddenErrors.Add(hiddenError);
-            });
+            };
             return hiddenErrors;
         }
 
@@ -81,7 +81,7 @@ namespace NaturalIntelligence.ArtificialNeuralNetwork
         public virtual IList<double> CalculateTopLayerErrors(Exemplar exemplar)
         {
             var errors = new List<double>();
-            int numberOfOutputUnits = OutputLayer.Count;
+            int numberOfOutputUnits = OutputLayer.Count();
             for (int i = 0; i < numberOfOutputUnits; i++)
             {
                 double activation = OutputLayer[i].Activation.Value;
